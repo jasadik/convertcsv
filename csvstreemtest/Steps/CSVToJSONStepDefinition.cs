@@ -41,10 +41,10 @@ namespace csvstreemtest.Steps
         }
 
         [Then(@"Check The Result return error (.*) And Check The ResultContent is \(""([^""]*)""\)")]
-        public void ThenCheckTheResultReturnErrorAndCheckTheResultContentIs(int error, string message)
+        public void ThenCheckTheResultReturnErrorAndCheckTheResultContentIs(int error, string ResultContent)
         {
             Assert.AreEqual(error, (int)RestResponse.StatusCode);
-            Assert.AreEqual(message, RestResponse.Content.ToString());
+            Assert.AreEqual(ResultContent, RestResponse.Content.ToString());
         }
 
 
