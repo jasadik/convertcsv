@@ -74,15 +74,15 @@ namespace csvstreemtest.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Convertion of csv file from invalid url to JSON")]
-        [NUnit.Framework.CategoryAttribute("JSONScenario1")]
-        public void ConvertionOfCsvFileFromInvalidUrlToJSON()
+        [NUnit.Framework.DescriptionAttribute("Convertion of csv file from valid url to JSON")]
+        [NUnit.Framework.CategoryAttribute("JSONScenario2")]
+        public void ConvertionOfCsvFileFromValidUrlToJSON()
         {
             string[] tagsOfScenario = new string[] {
-                    "JSONScenario1"};
+                    "JSONScenario2"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Convertion of csv file from invalid url to JSON", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Convertion of csv file from valid url to JSON", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,15 +92,48 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("I Send the params url (\"Not Valid URL\") and type (\"JSON\")", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.Given("I Send the params url (\"https://ohzard.com/files/exemplecsv.txt\") and type (\"JSON" +
+                        "\")", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 20
  testRunner.And("Send the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
- testRunner.Then("Check The Result return error 400 And Check The ResultContent is (\"It\'s a bad req" +
-                        "uest\")", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 21
+ testRunner.Then("Check The Result return 200 And Check The ResultContent is ValidJSON", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Convertion of csv file from valid url to XML")]
+        [NUnit.Framework.CategoryAttribute("XMLScenario2")]
+        public void ConvertionOfCsvFileFromValidUrlToXML()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "XMLScenario2"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Convertion of csv file from valid url to XML", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 25
+ testRunner.Given("I Send the params url (\"https://ohzard.com/files/exemplecsv.txt\") and type (\"XML\"" +
+                        ")", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+ testRunner.And("Send the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+ testRunner.Then("Check The Result return 200 And Check The ResultContent is ValidXML", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

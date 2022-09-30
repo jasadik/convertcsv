@@ -1,0 +1,3 @@
+sku|title|description|price|stock
+s1324|My super product|My super product it’s the best on the market|1.21|99
+x5611|My second super product|My second super product it’s the best on the market|7.43|53

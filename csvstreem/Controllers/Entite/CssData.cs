@@ -1,6 +1,6 @@
 public class CssData
 {
-    public bool isReady{ get { return HeaderData !=null && LignesData!=null && LignesData.Count>0 ;} }
+    public bool isReady { get { return HeaderData != null && LignesData != null && LignesData.Count > 0; } }
     public List<string> HeaderData { get; set; }
     public List<List<string>> LignesData { get; set; }
 
@@ -27,10 +27,11 @@ public class CssData
     }
     public CssData ParceHeader(string Header)
     {
-        try{
+        try
+        {
             HeaderData = Header.Split(Separator).ToList();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             throw e;
         }
@@ -38,26 +39,27 @@ public class CssData
     }
     public CssData AddData(string Line)
     {
-        if(HeaderData == null)
+        if (HeaderData == null)
             return this.ParceHeader(Line);
         return this.ParceAddLigne(Line);
     }
     private void addLigne(List<string> Ligne)
     {
-        if(LignesData.Count>DataSizeMax && DataSizeMax>-1)
+        if (LignesData.Count > DataSizeMax && DataSizeMax > -1)
         {
             LignesData.RemoveAt(0);
         }
         LignesData.Add(Ligne);
     }
-    
+
     public CssData ParceAddLigne(string Ligne)
     {
-        try{
-            var res  = Ligne.Split(Separator).ToList();
+        try
+        {
+            var res = Ligne.Split(Separator).ToList();
             addLigne(res);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             throw e;
         }

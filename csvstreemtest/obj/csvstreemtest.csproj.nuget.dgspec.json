@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj": {}
+    "C:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj": {}
   },
   "projects": {
-    "c:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj": {
+    "C:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
+        "projectUniqueName": "C:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
         "projectName": "csvstreemtest",
-        "projectPath": "c:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
+        "projectPath": "C:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
         "packagesPath": "C:\\Users\\Administrateur\\.nuget\\packages\\",
-        "outputPath": "c:\\repov1\\csvstreem\\csvstreemtest\\obj\\",
+        "outputPath": "C:\\repov1\\csvstreem\\csvstreemtest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrateur\\AppData\\Roaming\\NuGet\\NuGet.Config",

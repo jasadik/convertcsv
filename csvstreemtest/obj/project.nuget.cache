@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qmqNgRYDV5cZAMwjbnVY57czswqA8fNHwH/D6PuRbilMOVwcC7RKrDVdcHWDnitFn5Vf2vBeOH48mKXsZuNG5g==",
+  "dgSpecHash": "CO3MyUdgRhdS1Y9dnkRhJeBHU9ygAFc/uGv0n1iRXnJk3fyjIr8KdoBFlWSRdP8XzE42T4ZqfsK9VPxdKRkjfQ==",
   "success": true,
-  "projectFilePath": "c:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
+  "projectFilePath": "C:\\repov1\\csvstreem\\csvstreemtest\\csvstreemtest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrateur\\.nuget\\packages\\bodi\\1.5.0\\bodi.1.5.0.nupkg.sha512",
     "C:\\Users\\Administrateur\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",

@@ -2,14 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace csvstreem.Controllers;
 
-public class RequestInfoFile
-{
-    public string csvUri { get; set; }
-    public string type { get; set; }
-    public char? separator { get; set; }
 
-
-}
 
 
 [ApiController]
@@ -24,24 +17,42 @@ public class ConvertorController : ControllerBase
     }
 
     
+    
+
 
     [HttpGet(Name = "Convertor")]
-    public async Task<ActionResult> GetAll([BindRequired, FromQuery] RequestInfoFile param)
+    [Consumes("application/json")]
+    public async Task<ActionResult> ConvertJson([BindRequired, FromQuery] RequestInfoFile param)
     {
-        string url = param.csvUri;
-        string type = param.type;
 
+        var _param = new RequestInfoFile{ csvUri = param.csvUri,separator = param.separator,type= "json" };
+        return await Transform(_param);
+
+    }
+    [HttpGet(Name = "Convertor")]
+    [Consumes("application/xml")]
+    public async Task<ActionResult> ConvertXML([BindRequired, FromQuery] RequestInfoFile param)
+    {
+        var _param = new RequestInfoFile{ csvUri = param.csvUri,separator = param.separator,type= "xml" };
+        return await Transform(_param);
+    }
+    private async Task<ActionResult> Transform(RequestInfoFile param)
+    {
+        if (!ModelState.IsValid)  
+        {  
+           return BadRequest();
+        } 
         try
         {
-            return await ConvertTo(url,';',type);
+            return await ConvertTo(param.csvUri,param.separator,param.type);
         }
         catch(BadUriException e)
         {
-            return BadRequest("Url Not Formated");
+               return BadRequest("The CSV is badly formatted");
         }
         catch (BadFormatException e)
         {
-                    return BadRequest("File not formated");
+            return BadRequest("The CSV is badly formatted");
         }
         catch (Exception e)
         {
@@ -51,7 +62,7 @@ public class ConvertorController : ControllerBase
 
         return new EmptyResult();
     }
-    private async Task<EmptyResult> ConvertTo(string url, char separator = ',', string type = "xml")
+    private async Task<EmptyResult> ConvertTo(string url, char separator, string type)
     {
         var Css = new CssData().SetSeparator(separator);
 
@@ -65,6 +76,9 @@ public class ConvertorController : ControllerBase
         ConvertData.SetData(Css);
 
 
+        Action<string> outputdata = async (line) => {await printPageAsync(line);};
+        //Action<string> outputdataSync = (line) => {printPage(line);};
+
         bool verified = false;
         await new UriDataStreamReader()
         .SetUri(url)
@@ -77,20 +91,20 @@ public class ConvertorController : ControllerBase
                    {
                        throw new BadFormatException("The CSV is badly formatted");
                    }
-                    //Response.ContentType = "application/json";
-                    Response.StatusCode = 200;
-                   await printPage(ConvertData.GetPreHeader());
+                   Response.StatusCode = 200;
                    verified = true;
+                   outputdata(ConvertData.GetPreHeader());
                }
-               await printPage(ConvertData.GetPartialConvert());
+               else if(Css.isReady) 
+                    outputdata(ConvertData.GetPartialConvert());
                //Thread.Sleep(1000);
            });
 
-        await printPage(ConvertData.GetAfterFooter());
+        outputdata(ConvertData.GetAfterFooter());
 
-        return null;
+        return new EmptyResult();
     }
-    private async Task<EmptyResult> printPage(string line)
+    private async Task<EmptyResult> printPageAsync(string line)
     {
         StreamWriter sw;
         await using ((sw = new StreamWriter(Response.Body)).ConfigureAwait(false))
@@ -100,5 +114,13 @@ public class ConvertorController : ControllerBase
 
         }
         return null;
+    }
+    private async void printPage(string line)
+    {
+        StreamWriter sw;
+        await using ((sw = new StreamWriter(Response.Body)))
+        {
+            sw.Write(line);
+        }
     }
 }

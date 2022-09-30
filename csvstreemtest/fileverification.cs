@@ -5,13 +5,13 @@ namespace csvstreemtest
 {
     internal static class fileverification
     {
-        private static bool IsJsonValid(this string txt)
+        public static bool IsJsonValid(this string txt)
         {
             try { return JsonDocument.Parse(txt) != null; } catch { }
 
             return false;
         }
-        private static bool validateXML(string xml)
+        public static bool IsValidateXML(string xml)
         {
             try
             {
